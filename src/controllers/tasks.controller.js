@@ -1,7 +1,9 @@
 import Task from "../models/task.model.js";
 
 export const getTasks = async (req, res) => {
-  const task = await Task.find();
+  const task = await Task.find({
+    user: req.user.id,
+  }).populate("user"); //
   res.json(task);
 };
 
@@ -11,7 +13,7 @@ export const createTask = async (req, res) => {
     title,
     description,
     date,
-    user: req.user.id
+    user: req.user.id,
   });
 
   const savedTask = await newTask.save();
@@ -19,7 +21,7 @@ export const createTask = async (req, res) => {
 };
 
 export const getTask = async (req, res) => {
-  const task = await Task.findById(req.params.id);
+  const task = await Task.findById(req.params.id).populate("user");
   if (!task) return res.status(404).json({ message: "Task not Found" });
   res.json(task);
 };
@@ -27,7 +29,7 @@ export const getTask = async (req, res) => {
 export const deleteTask = async (req, res) => {
   const task = await Task.findByIdAndDelete(req.params.id);
   if (!task) return res.status(404).json({ message: "Task not Found" });
-  res.json(task);
+  return res.sendStatus(204);
 };
 
 export const updateTask = async (req, res) => {
