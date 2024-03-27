@@ -11,3 +11,5 @@ Currently, two official plugins are available:
 [Tailwind](https://tailwindcss.com/docs/guides/vite)
 
 [React Router](https://reactrouter.com/en/main/start/tutorial)
+
+[React Hook Form](https://react-hook-form.com/)
