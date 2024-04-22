@@ -25,6 +25,7 @@ function LoginPage() {
         <h1 className="text 2xl: font-bold">Login</h1>
         <form onSubmit={onSubmit}>
           <input
+            autoComplete="on" 
             type="email"
             {...register("email", { required: true })}
             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
@@ -34,6 +35,7 @@ function LoginPage() {
             <p className="text-red-500 font-medium mt-1">Email is required</p>
           )}
           <input
+            autoComplete="on" 
             type="password"
             {...register("password", { required: true })}
             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
